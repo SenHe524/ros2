@@ -32,6 +32,8 @@ public:
         //  等待服务器上线
         while(!novel_client->wait_for_service(std::chrono::seconds(1)))
         {
+            if(!rclcpp::ok())
+                    return ;
             RCLCPP_WARN(this->get_logger(), "等待服务器上线...");
         }
         //  构造请求数据
@@ -42,7 +44,7 @@ public:
     }
 
 private:
-    //  3.声明发布者订阅者
+    //  声明客户端
     rclcpp::Client<cpp_my_interfaces::srv::Servicetest>::SharedPtr novel_client;
 
     //  接收小说的回调函数
@@ -66,7 +68,7 @@ int main(int argc, char ** argv)
 	//  初始化客户端库
     rclcpp::init(argc, argv);
     //  实例化继承了Node的类
-    auto node = std::make_shared<poorman>("li");
+    auto node = std::make_shared<poorman>("zheng");
     //  spin循环节点
     node->buy_novels();
     rclcpp::spin(node);

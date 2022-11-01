@@ -14,7 +14,7 @@
         "/home/sen/Desktop/dev_ws/install/learning_gazebo/lib/python3.8/site-packages",
         "/opt/ros/foxy/lib/python3.8/site-packages"
     ],
-    "cmake.sourceDirectory": "${workspaceFolder}/test_node",
+    "cmake.sourceDirectory": "${workspaceFolder}/ltme_node/lib/ldcp_sdk/third_party/RapidJSON/rapidjson-1.1.0/doc",
     "files.associations": {
         "cstdio": "cpp",
         "chrono": "cpp",

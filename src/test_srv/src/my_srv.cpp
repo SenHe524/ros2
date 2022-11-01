@@ -5,7 +5,6 @@
 #include <chrono>
 //  1.导入消息类型文件
 #include "rclcpp/rclcpp.hpp"
-// #include "cpp_my_interfaces/srv/service_test.hpp"
 #include "cpp_my_interfaces/srv/servicetest.hpp"
 #include "std_msgs/msg/string.hpp"
 #include "std_msgs/msg/u_int32.hpp"
@@ -33,6 +32,7 @@ public:
         sell_novel_group = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
         sell_server = this->create_service<cpp_my_interfaces::srv::Servicetest>("Sell_Novel", 
             std::bind(&singledog::sell_novel_callback, this, _1, _2), rmw_qos_profile_services_default, sell_novel_group);
+        this->declare_parameter<std::int64_t>("novel_price", this->novel_price);
     }
 
 private:
@@ -46,7 +46,9 @@ private:
     rclcpp::CallbackGroup::SharedPtr sell_novel_group;
     //  声明小说队列
     std::queue<std::string> novel_queue;
-
+    //  声明书的单价
+    unsigned int novel_price = 1;
+    
     void novel_callback(const std_msgs::msg::String::SharedPtr novels)
     {
         //  收到小说后发布稿费
@@ -57,13 +59,14 @@ private:
         RCLCPP_INFO(this->get_logger(), "收到小说:%s", novels->data.c_str());
     }
 
-    //  2.编写回调函数
+    //  编写回调函数
     void sell_novel_callback(const cpp_my_interfaces::srv::Servicetest::Request::SharedPtr request,
                     const cpp_my_interfaces::srv::Servicetest::Response::SharedPtr response)
     {
         RCLCPP_INFO(this->get_logger(), "收到一个买书的请求，一共给了%d元",request->money);
         //  计算应该给客户端的小说数量
-        unsigned int num = (int)request->money / (1.0);
+        this->get_parameter("novel_price", this->novel_price);
+        size_t num = (int)request->money / this->novel_price;
         //  判断当前书库中的书是否足够
         if(num > novel_queue.size())
         {
