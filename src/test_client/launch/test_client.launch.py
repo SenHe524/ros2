@@ -5,7 +5,6 @@ from launch_ros.actions import Node
 #   定义
 def generate_launch_description():
     #   创建节点描述
-
     pub_node = Node(
         package = "cpp_my_publisher",
         executable = "my_publisher"
@@ -13,9 +12,10 @@ def generate_launch_description():
 
     srv_node = Node(
         package = "test_srv",
-        executable = "my_srv"
+        executable = "my_srv",
+        parameters = [{'novel_price': 2}]
         )
-        
+
     client_node = Node(
         package = "test_client",
         executable = "my_client"

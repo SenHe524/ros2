@@ -13,7 +13,9 @@
         )
         srv_node = Node(
             package = "test_srv",
-            executable = "my_srv"
+            executable = "my_srv",
+            ##  修改参数值
+            parameters = [{'novel_price': 2}]
             )
             
         client_node = Node(
