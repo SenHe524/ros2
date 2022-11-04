@@ -6,10 +6,10 @@
                 "limitSymbolsToIncludedHeaders": false
             },
             "includePath": [
-                "/home/sen/Desktop/dev_ws/install/**",
-                "/home/sen/Desktop/dev_ws/src/**",
+                "/home/sen/Desktop/dev_ws/install/cpp_my_interfaces/include/**",
                 "/opt/ros/foxy/include/**",
                 "/usr/include/**",
+                "/home/sen/Desktop/dev_ws/src/**",
                 "/opt/ros/foxy/**"
             ],
             "name": "ROS",

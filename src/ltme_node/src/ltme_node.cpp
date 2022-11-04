@@ -1,5 +1,4 @@
 #include "ltme_node/ltme_node.h"
-
 #include <arpa/inet.h>
 
 #include <sensor_msgs/msg/laser_scan.hpp>

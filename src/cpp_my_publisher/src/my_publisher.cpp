@@ -107,7 +107,7 @@ int main(int argc, char ** argv)
 	//  初始化客户端库
     rclcpp::init(argc, argv);
     //  实例化继承了Node的类
-    auto node = std::make_shared<singledog>("li");
+    auto node = std::make_shared<singledog>("wang");
     //  spin循环节点
     rclcpp::spin(node);
     //  关闭客户端库
