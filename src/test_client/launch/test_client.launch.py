@@ -13,7 +13,7 @@ def generate_launch_description():
     srv_node = Node(
         package = "test_srv",
         executable = "my_srv",
-        parameters = [{'novel_price': 2}]
+        parameters = [{'novel_price': 3}]
         )
 
     client_node = Node(
