@@ -83,5 +83,6 @@
         "/home/sen/Desktop/dev_ws/install/cpp_my_interfaces/lib/python3.8/site-packages",
         "/opt/ros/foxy/lib/python3.8/site-packages"
     ],
-    "ros.distro": "foxy"
+    "ros.distro": "foxy",
+    "cmake.sourceDirectory": "${workspaceFolder}/cpp_oop_test"
 }
