@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(cpp_my_interfaces)
+project(action_cpp_server)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -17,11 +17,32 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(sensor_msgs REQUIRED)
-find_package(std_msgs REQUIRED)
-find_package(action_msgs REQUIRED)
-find_package(rosidl_default_generators REQUIRED)
+find_package(cpp_my_interfaces REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rclcpp_action REQUIRED)
+find_package(rclcpp_components REQUIRED)
+add_library(action_server SHARED
+    src/action_server.cpp)
 
+target_include_directories(action_server PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+ament_target_dependencies(
+    action_server
+  "cpp_my_interfaces"
+  "rclcpp"
+  "rclcpp_action"
+  "rclcpp_components"
+)
+rclcpp_components_register_node(action_server PLUGIN "action_cpptest::FibonacciActionServer" EXECUTABLE fibonacci_action_server)
+
+# install(TARGETS action_test
+#   DESTINATION lib/${PROJECT_NAME})
+install(TARGETS
+action_server
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin)
 
 
 if(BUILD_TESTING)
@@ -34,16 +55,5 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
-
-rosidl_generate_interfaces(${PROJECT_NAME}
-"msg/Novel.msg"
-"msg/Test.msg"
-"srv/QueryFirmwareVersion.srv"
-"srv/QueryHardwareVersion.srv"
-"srv/QuerySerial.srv"
-"srv/Servicetest.srv"
-"action/Fibonacci.action"
-DEPENDENCIES sensor_msgs std_msgs 
-)
 
 ament_package()
