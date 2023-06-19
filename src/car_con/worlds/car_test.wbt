@@ -1,0 +1,28 @@
+#VRML_SIM R2020b utf8
+WorldInfo {
+  basicTimeStep 5
+  FPS 30
+  coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.05240954512048641 -0.9947645628705586 -0.08773086137278158 4.39813621920535
+  position 0.7840805500223795 0.2418364852803283 -0.30562945115988177
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+CircleArena {
+  radius 2
+  wallThickness 0.1
+}
+CarTest {
+  translation 0 0.076 -3.18531e-05
+  rotation 1 0 0 -1.57
+  controller "<extern>"
+  supervisor TRUE
+}

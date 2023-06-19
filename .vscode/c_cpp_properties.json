@@ -6,9 +6,11 @@
         "limitSymbolsToIncludedHeaders": false
       },
       "includePath": [
-        "/home/sen/Desktop/dev_ws/install/learning_interface/include/**",
+        "/home/sen/Desktop/agv_ws/install/serial/include/**",
+        "/home/sen/Desktop/agv_ws/install/agv_interfaces/include/**",
         "/opt/ros/foxy/include/**",
-        "/usr/include/**"
+        "/usr/include/**",
+        "${workspaceFolder}/**"
       ],
       "name": "ROS",
       "intelliSenseMode": "gcc-x64",

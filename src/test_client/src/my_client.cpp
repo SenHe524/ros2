@@ -37,7 +37,7 @@ public:
             RCLCPP_WARN(this->get_logger(), "等待服务器上线...");
         }
         //  构造请求数据
-        auto request = std::make_shared<cpp_my_interfaces::srv::Servicetest_Request>();
+        auto request = std::make_shared<cpp_my_interfaces::srv::Servicetest::Request>();
         request->money = 5;
         //  发送异步请求
         novel_client->async_send_request(request, std::bind(&poorman::novel_callback, this, _1));

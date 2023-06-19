@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C++ Debugger",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/install/${input:package_name}/lib/${input:package_name}/${input:package_executable}",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "/"
+        }
+    ],
+    "inputs": [
+        {
+          "id": "package_name",
+          "type": "promptString",
+          "description": "ros2 package name",
+          "default": "cpp_my_publisher"
+        },
+        {
+          "id": "package_executable",
+          "type": "promptString",
+          "description": "ros2 package executable",
+          "default": "my_publisher"
+        }
+      ]
+
+}
